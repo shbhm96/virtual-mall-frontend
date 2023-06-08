@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import FormContainer from '../components/FormContainer';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../action/userAction';
-import Message from '../components/Message';
-import Loader from '../components/Loader';
+import Message from '../../components/Message';
+import Loader from '../../components/Loader';
+import FormContainer from '../../components/FormContainer';
+import {loginCust} from "../../action/cust/custAction"
 
 const CustLogin = () => {
   const [email,setEmail] = useState('');
@@ -15,23 +15,23 @@ const CustLogin = () => {
 
   const dispatch = useDispatch()
 
-//   const {loading,error,userInfo} = useSelector(state=>state.userLogin)
+  const {loading,error,custInfo} = useSelector(state=>state.custLogin)
 
 
   // const redirect= window.location ? window.location.pathname.toString().split("=")[1] : "/"
   // console.log("value",redirect)
 
-//   useEffect(()=>{
-//     if(userInfo){
-//         history("/cart")
-//     }
-//   },[userInfo,history])
+  useEffect(()=>{
+    if(custInfo){
+        history("/cart")
+    }
+  },[custInfo,history])
 
   const submitHandler=(e)=>{
     e.preventDefault()
-    dispatch(loginUser(email,password))
-    setEmail('')
-    setPassword('')
+    dispatch(loginCust(email,password))
+    // setEmail('')
+    // setPassword('')
   }
   
   return (
@@ -42,11 +42,11 @@ const CustLogin = () => {
       <Form onSubmit={submitHandler} >
         <Form.Group controlId='emailId'>
         <Form.Label>Email Address</Form.Label>
-        <Form.Control placeholder='enter your email address' type='email' onChange={(e)=>setEmail(e.target.value)} value={email}/ >
+        <Form.Control placeholder='enter your email address' type='email' onChange={(e)=>setEmail(e.target.value)} value={email} required/>
         </Form.Group>
         <Form.Group controlId='password'>
         <Form.Label>Password</Form.Label>
-        <Form.Control placeholder='enter your password' type='password' onChange={(e)=>setPassword(e.target.value)} value={password}/ >       
+        <Form.Control placeholder='enter your password' type='password' onChange={(e)=>setPassword(e.target.value)} value={password} required/>       
         </Form.Group>
         <Button type="submit" variant="primary">
           Sign In

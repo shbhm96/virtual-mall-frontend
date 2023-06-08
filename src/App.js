@@ -7,6 +7,7 @@ import SellerLogin from './screens/seller/SellerLogin';
 import HomeScreen from './screens/HomeScreen';
 import SellerRegister from './screens/seller/SellerRegister';
 import CustRegister from './screens/customer/CustRegister';
+import CustLogin from './screens/customer/CustLogin';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path='/seller/login' element={<SellerLogin/>}/>  
             <Route path="/seller/register" element={<SellerRegister/>}/>
 
+            <Route path="/cust/login" element={<CustLogin/>}/>
             <Route path="/cust/register" element={<CustRegister/>}/>
 
           </Routes>

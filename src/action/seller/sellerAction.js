@@ -20,10 +20,12 @@ export const loginSeller = (email,password) => async(dispatch)=>{
         }
 
         const {data} = backendApi.post("/seller/login",{email,password},config)
+        console.log("action data",data)
 
         dispatch({
             type:SELLER_LOGIN_SUCCESS,
             payload : data,
+            loading:false
         })
         localStorage.setItem("sellerInfo",JSON.stringify(data))
     }catch(err){
@@ -34,7 +36,6 @@ export const loginSeller = (email,password) => async(dispatch)=>{
 }
 
 export const registerSeller = (BusinessName,businessOwnerName,sellerMobile,aadharNumber,sellerEmail,password) => async (dispatch)=>{    
-    console.log(BusinessName,businessOwnerName,sellerMobile,aadharNumber,sellerEmail,password)
     try{
         dispatch({
             type:SELLER_REGISTER_REQUEST
@@ -52,9 +53,6 @@ export const registerSeller = (BusinessName,businessOwnerName,sellerMobile,aadha
             sellerEmail,
             password
         },config)
-
-        console.log(data)
-        return
 
         dispatch({
             type:SELLER_REGISTER_SUCCESS,

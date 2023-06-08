@@ -20,15 +20,15 @@ const SellerRegister = () => {
   const history = useNavigate()
   const dispatch = useDispatch()
 
-//    const {loading,error,userInfo} = useSelector(state=>state.userRegister)
+   const {loading,error,sellerInfo} = useSelector(state=>state.sellerLogin)
 
   const redirect= window.location ? window.location.search.split("=")[1]: "/"
 
-//   useEffect(()=>{
-//     if(userInfo){
-//         history('/cart')
-//     }
-//   },[userInfo,history,redirect])
+  useEffect(()=>{
+    if(sellerInfo){
+        history('/')
+    }
+  },[sellerInfo,history,redirect])
 
   const submitHandler=(e)=>{
     e.preventDefault()
@@ -51,10 +51,10 @@ const SellerRegister = () => {
   
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1>Seller Sign Up</h1>
       {msg && <Message variant="info">{msg}</Message>}
-      {/* {error &&<Message variant="danger">{error}</Message>}
-      {loading && <Loader/>} */}
+      {error &&<Message variant="danger">{error}</Message>}
+      {loading && <Loader/>}
       <Form onSubmit={submitHandler} >
         <Form.Group controlId='Business Name'>
             <Form.Label>Buisness Name</Form.Label>

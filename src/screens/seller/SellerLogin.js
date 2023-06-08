@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux"
 import FormContainer from '../../components/FormContainer'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { loginSeller } from '../../action/seller/sellerAction.js'
+import Message from '../../components/Message'
+import Loader from '../../components/Loader'
 
 const SellerLogin = () => {
   const [email,setEmail] = useState("")
@@ -21,13 +23,15 @@ const SellerLogin = () => {
 
   useEffect(()=>{
     if(sellerInfo){
-      history("/profile")
+        history('/')
     }
-  })
+  },[sellerInfo,history])
 
   return ( 
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1>Seller Sign In</h1>
+      {error && <Message variant="danger">{error}</Message>}
+      {loading && <Loader/>}
       <Form onSubmit={submitHandler} >
         <Form.Group controlId='emailId'>
         <Form.Label>Email Address</Form.Label>

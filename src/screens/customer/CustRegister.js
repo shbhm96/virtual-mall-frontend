@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../../components/FormContainer';
 import Message from '../../components/Message';
+import { registerCust } from '../../action/cust/custAction';
+import Loader from '../../components/Loader';
 
 
 
@@ -20,15 +22,15 @@ const CustRegister = () => {
 
   const dispatch = useDispatch()
 
-//   const {loading,error,userInfo} = useSelector(state=>state.userRegister)
+  const {loading,error,custInfo} = useSelector(state=>state.custLogin)
 
   const redirect= window.location ? window.location.search.split("=")[1]: "/"
 
-//   useEffect(()=>{
-//     if(userInfo){
-//         history('/cart')
-//     }
-//   },[userInfo,history,redirect])
+  useEffect(()=>{
+    if(custInfo){
+        history('/')
+    }
+  },[custInfo,history,redirect])
 
   const submitHandler=(e)=>{
     e.preventDefault()
@@ -38,7 +40,7 @@ const CustRegister = () => {
     if(password !== confPass){
       setMsg("Password Do not match")
     }else{
-    //   dispatch(registerUser(name,email,password))
+      dispatch(registerCust(name,email,password,mobile))
       setMobile(0)
       setEmail('')
       setPassword('')
@@ -51,8 +53,8 @@ const CustRegister = () => {
     <FormContainer>
       <h1>Sign Up</h1>
       {msg && <Message variant="info">{msg}</Message>}
-      {/* {error &&<Message variant="danger">{error}</Message>}
-      {loading && <Loader/>} */}
+      {error &&<Message variant="danger">{error}</Message>}
+      {loading && <Loader/>}
       <Form onSubmit={submitHandler} >
       <Form.Group controlId='name'>
         <Form.Label>Name</Form.Label>
