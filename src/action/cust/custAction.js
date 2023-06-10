@@ -18,7 +18,7 @@ const loginCust = (email,password) => async(dispatch)=>{
             }
         }
 
-        const {data} = backendApi.post("/cust/login",{email,password},config)
+        const {data} = await backendApi.post("/cust/login",{email,password},config)
         console.log("cust data",data)
         dispatch({
             type:CUST_LOGIN_SUCCESS,

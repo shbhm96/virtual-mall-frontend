@@ -36,7 +36,7 @@ const CustLogin = () => {
   
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1>Customer Sign In</h1>
       {error &&<Message variant="danger">{error}</Message>}
       {loading && <Loader/>}
       <Form onSubmit={submitHandler} >
@@ -48,7 +48,7 @@ const CustLogin = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control placeholder='enter your password' type='password' onChange={(e)=>setPassword(e.target.value)} value={password} required/>       
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" className='my-3'>
           Sign In
         </Button>
         <Row>

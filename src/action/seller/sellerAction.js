@@ -18,8 +18,7 @@ export const loginSeller = (email,password) => async(dispatch)=>{
                 'Content-type':'application/json'
             }
         }
-
-        const {data} = backendApi.post("/seller/login",{email,password},config)
+        const {data} = await backendApi.post("/seller/login",{email,password},config)
         console.log("action data",data)
 
         dispatch({

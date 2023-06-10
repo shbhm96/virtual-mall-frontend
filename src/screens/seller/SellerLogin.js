@@ -41,7 +41,7 @@ const SellerLogin = () => {
         <Form.Label>Password</Form.Label>
         <Form.Control placeholder='enter your password' type='password' onChange={(e)=>setPassword(e.target.value)} value={password}/ >       
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" className='my-3'>
           Sign In
         </Button>
         <Row>
