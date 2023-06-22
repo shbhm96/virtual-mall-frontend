@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Alert, Button, Col, Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSellerProduct } from '../../action/seller/productAction'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const SellerProduct = () => {
 
@@ -10,10 +10,11 @@ const SellerProduct = () => {
 
     const dispatch = useDispatch()
     const params = useParams()
+    const history= useNavigate()
     const sellerId = params.id
 
     const createProductHandler= (e) =>{
-        e.preventDefault()
+        history(`/seller/product/edit`)
     }
 
     const deleteHandler = (id) =>{

@@ -4,11 +4,14 @@ import FormContainer from "../../components/FormContainer.js"
 import { Button, Form } from 'react-bootstrap'
 import Loader from '../../components/Loader.js'
 import Message from '../../components/Message.js'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getSellerProductDetails } from '../../action/seller/productAction.js'
+import uploadImageApi from '../../api/uploadImageApi.js'
 
 const SellerCreateProduct = () => {
 
     const params = useParams()
+    const dispatch = useDispatch()
     const productId = params.id
 
     const {loading,error,} = useSelector(state=>state)
@@ -20,21 +23,31 @@ const SellerCreateProduct = () => {
   const[CountInStock,setCountInStock] = useState(0)
   const[Description,setDescription] = useState("This is a sample description.")
   const[Image,setImage] = useState("/images/sample.jpg")
+  const[file,setFile] = useState("")
   const [errorMsg,setErrorMsg] = useState("")
 
-  const uploadImageHandler = (e) =>{
-    e.preventDefault()
-  }
+
 
   const submitHandler= (e) =>{
     e.preventDefault()
   }
 
-  useEffect(()=>{
-    if(id){
-        
+  const uploadImageHandler = (e)=>{
+    const validFileTypes = ['image/jpg','image/jpeg','image/png']
+    if(validFileTypes.find(type => type === file.type)){
+      setErrorMsg("Uploaded image must be in JPG/JPEG/PNG format")
+      return
     }
+   const formData = new FormData()
+   formData.append("image",file)
+   const result = uploadImageApi(formData)
+   console.log("result",result)
+  }
 
+  useEffect(()=>{
+    if(productId){
+        dispatch(getSellerProductDetails(productId))
+    }
   },[])
 
     
@@ -83,8 +96,7 @@ const SellerCreateProduct = () => {
           </Button>
         </Form>
       </FormContainer>
-      </>
-    
+    </>
   )
 }
 

@@ -5,7 +5,8 @@ import {
     sellerRegisterReducer 
 } from "./seller/sellerReducer";
 import { custRegisterReducer,custLoginReducer } from "./cust/custReducer";
-import { getSellerProductReducer } from "./seller/productReducers";
+import { getSellerProductDetailsReducer, getSellerProductReducer } from "./seller/productReducers";
+import { sellerOrderListReducer } from "./seller/orderReducer";
 
 
 const rootReducer = combineReducers({
@@ -14,6 +15,8 @@ const rootReducer = combineReducers({
     sellerRegister      :       sellerRegisterReducer,
     getCustomersList    :       sellerGetCustomerDetailsReducer,
     getSellerProduct    :       getSellerProductReducer,
+    sellerAllOrdersList:        sellerOrderListReducer,
+    sellerProductDetails:       getSellerProductDetailsReducer,
 
     //User or Customer Reducers
     custLogin           :       custLoginReducer,
@@ -37,6 +40,8 @@ const initialState = {
     //seller State
     sellerLogin : {sellerInfo : sellerInfoFromLocalStorage},
     getSellerProduct : {sellerProduct:sellerProductFromLocalStorage},
+    sellerAllOrdersList: {sellerOrders:[]},
+    sellerProductDetails:{sellerProductDetails:{}},
 
     //Customer State
     custLogin : {custInfo : custInfoFromLocalStorage},

@@ -30,7 +30,7 @@ function App() {
             <Route path="/seller/:id/profile" element={<SellerProfile/>}/>
             <Route path="/seller/:id/customers" element={<CustomerLisInShop/>}/>
             <Route path="/seller/:id/products" element={<SellerProduct/>}/>
-            <Route path="/seller/product/:id/edit" element={<SellerCreateProduct/>}/>
+            <Route path="/seller/product/:id?/edit" element={<SellerCreateProduct/>}/>
             <Route path="/seller/:id" element={<SellerHomePage/>}/>
             <Route path="/seller/:id/orders" element={<SellerOrdersList/>}/>
 

@@ -14,13 +14,15 @@ const SellerHomePage = () => {
 
   const {error,loading,sellerProducts}=useSelector(state=>state.getSellerProduct)
   const{sellerInfo} = useSelector(state=>state.sellerLogin)
+  console.log("sellerproduct",sellerProducts)
   console.log(sellerInfo)
 
   const id = params.id
+  console.log("seller d",id)
 
   useEffect(()=>{
       dispatch(getSellerProduct(id))
-  },[dispatch,,id])
+  },[dispatch,id])
   return (
     <>
       <h1>Latest Product</h1>
