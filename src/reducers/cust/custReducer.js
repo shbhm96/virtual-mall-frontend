@@ -16,7 +16,7 @@ export const custLoginReducer = (state={},action)=>{
         case CUST_LOGIN_FAIL:
             return {loading:false,error:action.payload}
         default:
-            return {}
+            return state
     }
 }
 
@@ -29,6 +29,6 @@ export const custRegisterReducer = (state={},action)=>{
         case CUST_REGISTER_FAIL:
             return {loading:false,error:action.payload}
         default:
-            return {}
+            return state
     }
 }

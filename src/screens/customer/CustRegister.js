@@ -27,7 +27,7 @@ const CustRegister = () => {
   const redirect= window.location ? window.location.search.split("=")[1]: "/"
 
   useEffect(()=>{
-    if(custInfo){
+    if(custInfo.length !== 0){
         history('/')
     }
   },[custInfo,history,redirect])

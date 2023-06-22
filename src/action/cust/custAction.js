@@ -5,7 +5,8 @@ import {
     CUST_LOGIN_SUCCESS, 
     CUST_REGISTER_FAIL, 
     CUST_REGISTER_REQUEST,
-    CUST_REGISTER_SUCCESS } from "../../constants/customer/custConstant"
+    CUST_REGISTER_SUCCESS, 
+    CUST_LOGOUT_SUCCESS} from "../../constants/customer/custConstant"
 
 const loginCust = (email,password) => async(dispatch)=>{
     try{
@@ -19,7 +20,6 @@ const loginCust = (email,password) => async(dispatch)=>{
         }
 
         const {data} = await backendApi.post("/cust/login",{email,password},config)
-        console.log("cust data",data)
         dispatch({
             type:CUST_LOGIN_SUCCESS,
             payload : data,
@@ -68,4 +68,12 @@ const registerCust = (name,email,password,mobile) => async (dispatch)=>{
     }
 }
 
-export{loginCust,registerCust}
+const logoutCust = ()=>(dispatch)=>{
+    
+    localStorage.removeItem("custInfo")
+    dispatch({
+        type:CUST_LOGOUT_SUCCESS
+    })
+}
+
+export{loginCust,registerCust,logoutCust}

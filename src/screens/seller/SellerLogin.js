@@ -15,6 +15,7 @@ const SellerLogin = () => {
   const dispatch = useDispatch()
 
   const{loading,error,sellerInfo} = useSelector(state=>state.sellerLogin)
+  const id=sellerInfo._id
   
   const submitHandler = (e)=>{
     e.preventDefault()
@@ -22,8 +23,9 @@ const SellerLogin = () => {
   }
 
   useEffect(()=>{
-    if(sellerInfo){
-        history('/')
+    if(sellerInfo.length !== 0){
+      console.log(id)
+        history(`/seller/${id}/profile`)
     }
   },[sellerInfo,history])
 
