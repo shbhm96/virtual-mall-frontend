@@ -6,7 +6,6 @@ import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import { Col, Row } from 'react-bootstrap'
 import Product from '../../components/Product'
-import { getSellerDetails } from '../../action/seller/sellerAction'
 
 const SellerHomePage = () => {
   const dispatch = useDispatch()
@@ -18,10 +17,12 @@ const SellerHomePage = () => {
   console.log(sellerInfo)
 
   const id = params.id
-  console.log("seller d",id)
+  console.log("seller_id",id)
 
   useEffect(()=>{
+    if(!sellerProducts){
       dispatch(getSellerProduct(id))
+    }
   },[dispatch,id])
   return (
     <>

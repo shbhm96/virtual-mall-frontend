@@ -1,0 +1,1 @@
+export const RupeeSign=<i className="fa fa-inr"></i>

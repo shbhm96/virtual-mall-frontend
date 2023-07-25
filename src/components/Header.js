@@ -2,22 +2,20 @@ import React from 'react'
 import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { logoutSeller } from '../action/seller/sellerAction'
 import { logoutCust } from "../action/cust/custAction"
 
 const Header = () => {
 
   const dispatch = useDispatch()
+  const history = useNavigate()
   
   const {loading,error,sellerInfo} = useSelector(state=>state.sellerLogin)
   const sellerId = sellerInfo && sellerInfo._id
-  const sellerUrl = sellerId && `/seller/${sellerId}`
-
   
   const {loading:loadingCust,error:errorCust,custInfo} = useSelector(state=>state.custLogin)
-  const customerId = custInfo && custInfo._id
-  
+  const customerId = custInfo && custInfo._id  
 
   const sellerLogoutHandler = (e) => {
     e.preventDefault()
@@ -29,12 +27,17 @@ const Header = () => {
     dispatch(logoutCust())
   }
 
+  const gotoHomePage=(e)=>{
+    e.preventDefault()
+    history(`/seller/${sellerId}/`)
+  }
+
   return (
     <header>
     <Navbar bg="dark" variant='dark' expand="lg" collapseOnSelect>     
     <Container>
      <LinkContainer to="/">
-       <Navbar.Brand href="/">Proshop</Navbar.Brand>
+       <Navbar.Brand onClick={gotoHomePage}>{sellerId ? sellerInfo.businessName : "Proshop"}</Navbar.Brand>
      </LinkContainer>
        <Navbar.Toggle aria-controls="basic-navbar-nav" />
        <Navbar.Collapse id="basic-navbar-nav">

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getSellerProduct } from '../../action/seller/productAction'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const SellerProduct = () => {
+const SellerProductsList = () => {
 
     const {error,loading,sellerProducts} = useSelector(state=>state.getSellerProduct)
 
@@ -83,4 +83,4 @@ const SellerProduct = () => {
   )
 }
 
-export default SellerProduct
+export default SellerProductsList

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../../components/Message';
 import Loader from '../../components/Loader';
@@ -9,15 +8,14 @@ import FormContainer from '../../components/FormContainer';
 import {loginCust} from "../../action/cust/custAction"
 
 const CustLogin = () => {
-  const params = useParams()
   const history = useNavigate()
   const dispatch = useDispatch()
 
   const [email,setEmail] = useState('');
   const [password,setPassword]= useState('')
-  const id = params.id
 
   const {loading,error,custInfo} = useSelector(state=>state.custLogin)
+  const{sellerInfo} = useSelector(state=>state.sellerLogin)
 
 
   // const redirect= window.location ? window.location.pathname.toString().split("=")[1] : "/"
@@ -25,7 +23,7 @@ const CustLogin = () => {
 
   useEffect(()=>{
     if(custInfo && custInfo.length!==0 ){
-        history(`/seller/${id}`)
+        history(`/seller/${sellerInfo._id}`)
     }
   },[custInfo,history])
 
