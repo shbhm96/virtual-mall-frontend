@@ -20,6 +20,9 @@ const CustViewProduct = () => {
     const productId = params.id
 
     const{loading,error,productDetails} = useSelector(state=>state.customerProductDetails)
+    const{sellerInfo} = useSelector(state=>state.sellerLogin)
+
+    const sellerid = sellerInfo._id
 
     const productDiscount = (price,mrp)=>{
       let mrp1 = Math.round(mrp)
@@ -30,18 +33,19 @@ const CustViewProduct = () => {
     const addToCartHandler=()=>{
       navigate(`/cart/${productId}?qty=${qty}`)
     }
-
+    console.log("product ",productDetails)
     useEffect(()=>{
-        if(!productDetails && productDetails.length == 0){
+        if(productDetails && productDetails.length == 0){
+            console.log("leo")
             dispatch(getCustomerProductDetails(productId))
         }
-    },[productId,dispatch])
+    },[productId,dispatch,productDetails])
 
 
 
   return (
     <>
-        <Link className='btn btn-dark my-3' to="/">Go Back</Link>
+        <Link className='btn btn-dark my-3' to={`/seller/${sellerid}`}>Go Back</Link>
         {loading && <Loader/>}
         {error && <Message variant="danger">{error}</Message>}
         {productDetails &&        
@@ -61,9 +65,9 @@ const CustViewProduct = () => {
                         
                         <span className='m-2' style={{color:"red",fontSize:"30px"}}>
                             
-                            -{productDiscount(productDetails.price,productDetails.mrp)}%
+                            -{productDiscount(productDetails.price,productDetails.price*1.23)}%
                         </span>{RupeeSign}{productDetails.price}<br className='m-3'/>
-                        <span className='text-decoration-line-through fw-bold'>{RupeeSign}{productDetails.mrp} </span>
+                        <span className='text-decoration-line-through fw-bold'>{RupeeSign}{Math.round(productDetails.price*1.23)} </span>
                         
                     </ListGroup.Item>
                     <ListGroup.Item>
@@ -114,7 +118,7 @@ const CustViewProduct = () => {
                                                 })}
                                         </Form.Control></Col>
                                 </Row>
-                            </ListGroup.Item>
+                            </ListGroup.Item>       
                         )}
                         <ListGroup.Item>
                             <Button

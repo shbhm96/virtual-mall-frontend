@@ -56,7 +56,7 @@ const initialState = {
     //Customer State
     custLogin : {custInfo : custInfoFromLocalStorage},
     cart:{cartItems:cartItemsfromLocalStorage,shippingAddress : shippingAddressFromStorage},
-    customerProductDetails:{productDetails:{}}
+    customerProductDetails:{productDetails:[]}
     
 }
 

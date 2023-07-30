@@ -2,6 +2,7 @@ import backendApi from "../../api/backend"
 import { CUSTOMER_PRODUCT_DETAILS_FAIL, CUSTOMER_PRODUCT_DETAILS_REQUEST, CUSTOMER_PRODUCT_DETAILS_SUCCESS } from "../../constants/customer/ProductConstant"
 
 const getCustomerProductDetails =(id) => async (dispatch)=>{
+    console.log(id)
     try{
         dispatch({
             type: CUSTOMER_PRODUCT_DETAILS_REQUEST
@@ -12,13 +13,7 @@ const getCustomerProductDetails =(id) => async (dispatch)=>{
             }
         }
         const {data}= await backendApi.get(`/cust/products/getProduct/${id}`,config)
-
-
-
-        data.mrp = Math.floor(data.price*1.23)
-
-
-        
+        console.log("data",data)        
 
         dispatch({
             type:CUSTOMER_PRODUCT_DETAILS_SUCCESS,

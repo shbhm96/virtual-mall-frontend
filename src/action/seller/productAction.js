@@ -21,7 +21,7 @@ export const getSellerProduct = (id) => async(dispatch,getState)=>{
                 Authorization:`Bearer ${sellerInfo.token}`
             }
         }
-
+        console.log("seller Product")
         const {data} = await backendApi.get(`/seller/products/getProducts/${id}`,config)
         console.log("data",data)
 
@@ -50,7 +50,7 @@ export const getSellerProductDetails = (id) =>async(dispatch,getState)=>{
                 Authorization:`Bearer ${sellerInfo.token}`
             }
         }
-
+        console.log("seller Product")
         const {data} = await backendApi.get(`/seller/product/${id}/edit`,{},config)
         console.log("data",data)
 
